@@ -2,21 +2,17 @@
 
 using namespace std;
 
-long long int fi[100000001];
-long long int fibbo(int num){
-    long long int &des = fi[num];
-    if(des!=-1) return des % 1000000;
-    else{
-        des = fibbo(num-1) + fibbo(num-2);
-        return des = des % 1000000;
+const int mod = 1000000;
+const int p = mod/10*15;
+long long int fibo[p]={0,1,};
+
+int main() {
+    long long n;
+    cin >> n;
+    for (int i=2; i<p; i++) {
+        fibo[i] = fibo[i-1] + fibo[i-2];
+        fibo[i] %= mod;
     }
-    
+    cout << fibo[n%p] << '\n';
+    return 0;
 }
-int main(){
-    int num; cin>>num;
-    for(int i=0;i<100000001;i++) fi[i] = -1;
-    fi[0] = 0; fi[1] = 1;
-    cout<<fibbo(num)<<'\n';
-}
-
-
