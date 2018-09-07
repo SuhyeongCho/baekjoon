@@ -6,10 +6,11 @@ using namespace std;
 
 list<int> l;
 list<string> st;
-char arr[200005];
+char arr[2000000];
 
-void arrToDeque(int n){
+void arrToDeque(){
     string s="";
+    st.clear();
     for(int i=0;arr[i]!='\0';i++){
         char c = arr[i];
         if(c == '[' || c == ']') continue;
@@ -19,39 +20,49 @@ void arrToDeque(int n){
         }
         else s+= c;
     }
-    for(int i=0;i<n;i++){
+    if(s != "") st.push_back(s);
+    while(!st.empty()){
         s = st.front();
         st.pop_front();
         int index = atoi(s.c_str());
         l.push_back(index);
     }
 }
-void dequeToArr(){
-    
+string dequeToArr(){
+    string s = "";
+    s += "[";
+    while(!l.empty()){
+        int num = l.front();
+        l.pop_front();
+        s += to_string(num);
+        if(l.empty()) break;
+        else s += ",";
+    }
+    s += "]";
+    return s;
 }
 
 int main(){
     int T; cin>>T;
     for(int t=0;t<T;t++){
-        char str[100000]; cin>>str;
+        char str[1000001]; cin>>str;
         int n; cin>>n;
         cin>>arr;
         l.clear();
-        arrToDeque(n);
+        arrToDeque();
         int d_cnt = 0;
         for(int i=0;str[i]!='\n';i++){
             if(str[i] == 'D') d_cnt++;
         }
         if(d_cnt > l.size()){
             cout<<"error"<<endl;
-            break;
+            continue;
         }
         for(int i=0;str[i]!='\n';i++){
             if(str[i] == 'R') l.reverse();
             else if(str[i] == 'D') l.pop_front();
         }
-        dequeToArr();
-        cout<<arr<<endl;
+        cout<<dequeToArr()<<endl;
     }
 }
 
