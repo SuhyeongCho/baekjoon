@@ -1,6 +1,10 @@
 #include<iostream>
 using namespace std;
 
+int factorial(int n){
+    if(n<=1) return 1;
+    return n*factorial(n-1);
+}
 void perm(int data[],int n){
     int k=-1,l=-1;
     for(int i=0;i<n-1;i++)
@@ -25,8 +29,11 @@ int main(){
     int N;
     cin>>N;
     int data[N];
-    for(int i=0;i<N;i++) cin>>data[i];
-    perm(data,N);
+    for(int i=0;i<N;i++){data[i] = i+1;cout<<data[i]<<" ";}
+    cout<<'\n';
+    int size = factorial(N);
+    for(int i=0;i<size-1;i++)
+        perm(data,N);
     return 0;
 }
 
