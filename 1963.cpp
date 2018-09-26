@@ -57,13 +57,13 @@ void bfs(){
             }
         }
         depth++;
-        if(depth >= 100){depth = -1; return;}
     }
+    if(q.empty()) depth = -1;
 }
 int main(){
     int T; cin>>T;
     for(int t=0;t<T;t++){
-        for(int i=0;i<q.size();i++) q.pop();
+        while(!q.empty())q.pop();
         for(int i=0;i<10000;i++) isVisited[i] = false;
         depth = 0;
         cin>>a>>b;
