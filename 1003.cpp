@@ -1,18 +1,23 @@
 #include <iostream>
 
 using namespace std;
-int zero[41] = {1,0,};
-int one[41] = {0,1,};
-void fibonacci(int n) {
-    zero[n] = zero[n-1]+zero[n-2];
-    one[n] = one[n-1]+one[n-2];
-}
 
+int zero[50];
+int one[50];
 int main(){
-    int T; cin>>T;
-    for(int i=2;i<41;i++) fibonacci(i);
-    for(int t=0;t<T;t++){
-        int num; cin>>num;
-        cout<<zero[num]<<" "<<one[num]<<'\n';
+    zero[0] = 1; zero[1] = 0;
+    one[0] = 0; one[1] = 1;
+    
+    for (int i = 2; i <= 40 ; i++) {
+        zero[i] = zero[i - 1] + zero[i - 2];
+        one[i] = one[i - 1] + one[i - 2];
     }
+    
+    int T; cin >> T;
+    for (int t = 0 ; t < T ; t++) {
+        int N; cin >> N;
+        cout << zero[N] << " " << one[N] <<endl;
+    }
+    
+    return 0;
 }
