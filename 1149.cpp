@@ -20,10 +20,10 @@ int main(){
     dp[1][1] = arr[1][1];
     dp[2][1] = arr[1][2];
 
-    for(int i=2;i<=N;i++){
-        dp[0][i] = arr[i][0] + min(dp[1][i-1],dp[2][i-1]);
-        dp[1][i] = arr[i][1] + min(dp[0][i-1],dp[2][i-1]);
-        dp[2][i] = arr[i][2] + min(dp[1][i-1],dp[0][i-1]);
+    for (int i = 2 ; i <= N ; i++) {
+        dp[0][i] = arr[i][0] + min(dp[1][i - 1], dp[2][i - 1]);
+        dp[1][i] = arr[i][1] + min(dp[2][i - 1], dp[0][i - 1]);
+        dp[2][i] = arr[i][2] + min(dp[0][i - 1], dp[1][i - 1]);
     }
     cout<<min(dp[0][N],min(dp[1][N],dp[2][N]))<<endl;
     return 0;

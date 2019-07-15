@@ -2,18 +2,24 @@
 
 using namespace std;
 
+long long int dp[101];
 
 int main(){
-    int T; cin>>T;
-    for(int t=0;t<T;t++){
-        int N; cin>>N;
-        long long int dp[101] = {0,1,1,1,2,2,};
-        
-        for(int i=6;i<=N;i++){
-            dp[i] = dp[i-5] + dp[i-1];
-        }
-        
-        cout<<dp[N]<<endl;
+    
+    dp[1] = 1;
+    dp[2] = 1;
+    dp[3] = 1;
+    dp[4] = 2;
+    dp[5] = 2;
+    
+    for (int i = 6 ; i <= 100 ; i++) {
+        dp[i] = dp[i - 1] + dp[i - 5];
+    }
+    
+    int T; cin >> T;
+    for (int t = 0 ; t < T ; t++) {
+        int N; cin >> N;
+        cout << dp[N] << endl;
     }
     return 0;
 }
