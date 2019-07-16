@@ -1,33 +1,35 @@
-#include<iostream>
-#include<queue>
-#include<algorithm>
+#include <iostream>
+#include <algorithm>
+#include <queue>
 
 using namespace std;
 
-
-queue<int> q;
-int X;
-int main(){
-    cin>>X;
-    q.push(X);
-    long long int cnt = 0;
-    while(!q.empty()){
+int main() {
+    int N; cin >> N;
+    
+    queue<int> q;
+    q.push(N);
+    
+    int result = 0;
+    while(!q.empty()) {
         int siz = q.size();
-        for(int i=0;i<siz;i++){
+        for (int i = 0; i < siz ; i++) {
             int d = q.front();
             q.pop();
             
-            if(d == 1){
-                cout<<cnt<<endl;
+            if (d == 1) {
+                cout << result << endl;
                 return 0;
             }
             
-            if(d % 2 == 0) q.push(d/2);
-            if(d % 3 == 0) q.push(d/3);
+            if (d % 3 == 0) q.push(d / 3);
+            if (d % 2 == 0) q.push(d / 2);
             q.push(d - 1);
-
         }
-        cnt++;
+        
+        result++;
     }
+    
+    
     return 0;
 }
