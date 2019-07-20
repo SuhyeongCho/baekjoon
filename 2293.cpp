@@ -1,24 +1,27 @@
-
 #include<iostream>
 
 using namespace std;
 
-int n,k;
-int dp[10001];
-int coin[101];
-
 int main(){
-    cin>>n>>k;
-    for(int i=1;i<=n;i++) cin>>coin[i];
+    int N, K; cin >> N >> K;
+    
+    int arr[101] = {0,};
+    int dp[10001] = {0,};
+    
+    for (int i = 1; i <= N ; i++) {
+        scanf("%d", &arr[i]);
+    }
     
     dp[0] = 1;
     
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=k;j++){
-            if(coin[i] <= j) dp[j] += dp[j-coin[i]];
+    for (int i = 1 ; i <= N ; i++) {
+        int coin = arr[i];
+        for (int j = 1 ; j <= K ; j++) {
+            if (coin <= j) dp[j] = dp[j] + dp[j - coin];
         }
     }
     
-    cout<<dp[k]<<endl;
+    cout << dp[K] << endl;
+    
     return 0;
 }

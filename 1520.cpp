@@ -8,35 +8,40 @@ int dp[501][501];
 
 int dir[4][2] = {{-1,0},{0,-1},{1,0},{0,1}};
 
-int fc(int y,int x){
-    if(y == M && x == N) return 1;
-    dp[y][x] = 0;
-    for(int i=0;i<4;i++){
-        int y1 = y + dir[i][0];
-        int x1 = x + dir[i][1];
-        
-        
-        if(y1 > 0 && x1 > 0 && y1 <= M && x1 <= N){
-            if(map[y1][x1] < map[y][x]){
-                if(dp[y1][x1] == -1)
-                    dp[y1][x1] = fc(y1,x1);
-                dp[y][x] += dp[y1][x1];
-            }
-        }
-    }
-    return dp[y][x];
+int fc(int x, int y) {
+
+    if (x == M && y == N) return 1;
+    else if (x < 1 && y < 1) return 0;
+    
+    if (dp[x][y] != -1) return dp[x][y];
+    
+    int sum = 0;
+    
+    if (map[x][y] > map[x + 1][y]) sum += fc(x + 1, y);
+    if (map[x][y] > map[x][y + 1]) sum += fc(x, y + 1);
+    if (map[x][y] > map[x - 1][y]) sum += fc(x - 1, y);
+    if (map[x][y] > map[x][y - 1]) sum += fc(x, y - 1);
+
+    dp[x][y] = sum;
+    
+    return dp[x][y];
+    
 }
 
 int main(){
+    
     cin>>M>>N;
-    for(int i=1;i<=M;i++)
-        for(int j=1;j<=N;j++)
-            scanf("%d",&map[i][j]);
+    for(int i = 1 ; i <= M ; i++) {
+        for(int j = 1 ; j <= N ; j++) {
+            scanf("%d", &map[i][j]);
+        }
+    }
     
-    for(int i=1;i<=M;i++)
-        for(int j=1;j<=N;j++)
+    for(int i = 1 ; i <= M ; i++) {
+        for(int j = 1 ; j <= N ; j++) {
             dp[i][j] = -1;
-    
+        }
+    }
     
     cout<<fc(1,1)<<endl;
     

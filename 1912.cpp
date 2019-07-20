@@ -9,22 +9,23 @@ int dp[100001];
 
 int main(){
     
-    int n;
-    cin>>n;
+    int N; cin >> N;
     
-    for(int i=1;i<=n;i++) cin>>arr[i];
-    
-    
-    for(int i=1;i<=n;i++){
-        dp[i] = max(dp[i-1]+arr[i],arr[i]);
+    for (int i = 1 ; i <= N ; i++) {
+        scanf("%d", &arr[i]);
     }
     
-    int Max = INT_MIN;
-    for(int i=1;i<=n;i++){
-        if(Max < dp[i]) Max = dp[i];
+    for (int i = 1 ; i <= N ; i++) {
+        dp[i] = max(dp[i - 1] + arr[i], arr[i]);
     }
     
-    cout<<Max<<endl;
+    int maxValue = INT_MIN;
+    
+    for (int i = 1 ; i <= N ; i++) {
+        if (maxValue < dp[i]) maxValue = dp[i];
+    }
+    
+    cout << maxValue <<endl;
     return 0;
 }
 
