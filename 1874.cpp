@@ -1,42 +1,45 @@
-#include<iostream>
+#include <iostream>
+#include <vector>
 
 using namespace std;
 
-int arr[100001];
-char arr3[200002];
-int size = 0;
-int charpos = 0;
-void push(int x){
-    arr3[charpos++] = '+';
-    arr[size++] = x;
-}
-int pop(){
-    arr3[charpos++] = '-';
-    return  size?arr[--size]:-1;
-}
-int Size(){ return size; }
-bool isEmpty(){ return size?0:1; }
-int top(){ return size?arr[size-1]:-1;}
-int main(){
-    int n; cin>>n;
-    int arr2[n];
-    for(int i=0;i<n;i++) cin>>arr2[i];
-    int pos = 1;
-    for(int i=0;i<n;i++){
-        while(1){
-            if(top()==arr2[i]){
-                pop();
-                break;
+int main() {
+    
+    int N ; cin >> N;
+    int pos = 0;
+    int check = 1;
+    vector<int> v;
+    vector<char> result;
+    for (int i = 0 ; i < N ; i++) {
+        int x; scanf("%d", &x);
+        if (!check) continue;
+        if (!v.empty() && v.back() == x) {
+            v.pop_back();
+            result.push_back('-');
+        } else {
+            if (pos > x) {
+                check = 0;
+                continue;
             }
-            else if(top()>arr2[i]){
-                cout<<"NO"<<endl;
-                return 0;
+            while (pos != x) {
+                pos++;
+                v.push_back(pos);
+                result.push_back('+');
+
             }
-            else{
-                push(pos++);
-            }
+            v.pop_back();
+            result.push_back('-');
         }
     }
-    for(int i=0;i<2*n;i++) cout<<arr3[i]<<'\n';
+    
+    if (check) {
+        int siz = result.size();
+        for (int i = 0 ; i < siz ; i++) {
+            printf("%c\n", result[i]);
+        }
+    } else {
+        cout << "NO" << endl;
+    }
+    return 0;
 }
 

@@ -1,27 +1,40 @@
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <vector>
+#include <cstring>
+
 using namespace std;
 
-int arr[10001];
-int size = 0;
-
-void push(int x){ arr[size++] = x; }
-int pop(){ return  size?arr[--size]:-1; }
-int Size(){ return size; }
-bool isEmpty(){ return size?0:1; }
-int top(){ return size?arr[size-1]:-1;}
 int main(){
-    int n; cin>>n;
-    for(int i=0;i<n;i++){
+    int N; cin >> N;
+    vector<int> v;
+    for(int i = 0 ; i < N ; i++) {
         char command[6];
-        cin>>command;
-        if(!strcmp(command,"push")){
-            int x; cin>>x;
-            push(x);
+        cin >> command;
+        if(!strcmp(command, "push")){
+            int x; cin >> x;
+            v.push_back(x);
         }
-        else if(!strcmp(command,"pop")) cout<<pop()<<endl;
-        else if(!strcmp(command,"size")) cout<<Size()<<endl;
-        else if(!strcmp(command,"empty")) cout<<isEmpty()<<endl;
-        else if(!strcmp(command,"top")) cout<<top()<<endl;
+        else if(!strcmp(command,"pop")) {
+            if (v.size()) {
+                cout << v.back() << endl;
+                v.pop_back();
+            } else {
+                cout << -1 << endl;
+            }
+        }
+        else if(!strcmp(command,"size")) {
+            cout << v.size() << endl;
+        }
+        else if(!strcmp(command,"empty")) {
+            cout << v.empty() << endl;
+        }
+        else if(!strcmp(command,"top")) {
+            if (v.size()) {
+                cout << v.back() << endl;
+            } else {
+                cout << -1 << endl;
+            }
+        }
     }
+    return 0;
 }

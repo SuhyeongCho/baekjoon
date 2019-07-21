@@ -41,7 +41,9 @@
 - 최대공약수와 최소공배수
 - [도움받은 사이트][7]
 
-
+## 스택
+### 오큰수
+- [도움받은 사이트][8]
 
 [1]: https://www.acmicpc.net
 [2]: https://twpower.github.io/71-use-sort-and-stable_sort-in-cpp
@@ -50,3 +52,4 @@
 [5]: https://www.crocus.co.kr/1073
 [6]: https://zorba91.tistory.com/entry/java-백준-알고리즘-1520번-내리막-길-풀이
 [7]: https://hyeonstorage.tistory.com/336
+[8]: https://justicehui.github.io/ps/2019/07/05/BOJ17298-BOJ17299/
