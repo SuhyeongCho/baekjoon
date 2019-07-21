@@ -36,7 +36,10 @@
 ### N,K로 이차원 배열 접근
 - 동전1
 
-## Greedy
+## 수학
+### 최대공약수
+- 최대공약수와 최소공배수
+- [도움받은 사이트][7]
 
 
 
@@ -46,3 +49,4 @@
 [4]: https://www.crocus.co.kr/787
 [5]: https://www.crocus.co.kr/1073
 [6]: https://zorba91.tistory.com/entry/java-백준-알고리즘-1520번-내리막-길-풀이
+[7]: https://hyeonstorage.tistory.com/336

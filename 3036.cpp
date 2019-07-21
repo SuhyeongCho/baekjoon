@@ -2,21 +2,26 @@
 
 using namespace std;
 
-int N;
-int arr[101];
-
-int gcd(int a,int b){
-    if(b==0) return a;
-    return gcd(b,a%b);
+int gcd(int a, int b){
+    if(b == 0) return a;
+    return gcd(b, a % b);
 }
 
 int main(){
-    cin>>N;
-    for(int i=0;i<N;i++) cin>>arr[i];
-
-    for(int i=1;i<N;i++){
-        int gcdValue = gcd(arr[0],arr[i]);
-        cout<<arr[0]/gcdValue<<"/"<<arr[i]/gcdValue<<endl;
+    int N; cin >> N;
+    int arr[101] = {0,};
+    for(int i = 0 ; i < N ; i++) {
+        scanf("%d", &arr[i]);
     }
+    
+    for (int i = 1 ; i < N ; i++) {
+        int value = gcd(arr[0], arr[i]);
+        
+        int first = arr[0] / value;
+        int second = arr[i] / value;
+        
+        printf("%d/%d\n", first, second);
+    }
+    
     return 0;
 }

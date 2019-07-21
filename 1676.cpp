@@ -3,8 +3,13 @@
 using namespace std;
 
 int main(){
-    int n;cin>>n;
-    if(n==0) cout<<0<<endl;
-    else cout<<n/125+n/25+n/5<<endl;
+    int N; cin >> N;
+    
+    int result = 0;
+    result += N / 5;
+    result += N / 25;
+    result += N / 125;
+    
+    cout << result << endl;
     return 0;
 }

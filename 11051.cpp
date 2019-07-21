@@ -1,17 +1,18 @@
 #include<iostream>
-#include<cstring>
 
 using namespace std;
-int cache[1001][1001];
 
-int bin(int n,int r){
-    if(r==0||n==r) return 1;
-    if(cache[n][r]!=-1) return cache[n][r];
-    else return cache[n][r] = (bin(n-1,r-1)+bin(n-1,r))%10007;
-}
+int dp[1001][1001];
 int main(){
-    memset(cache, -1, sizeof(cache));
-    int N,K;
-    cin>>N>>K;
-    cout<<bin(N,K)%10007<<'\n';
+    int N, K; cin >> N >> K;
+    
+    for (int i = 1 ; i <= N ; i++) {
+        dp[i][0] = 1; dp[i][i] = 1;
+        for (int j = 1 ; j <= i - 1 ; j++) {
+            dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j]) % 10007;
+        }
+    }
+    
+    cout << dp[N][K] << endl;
+    return 0;
 }
