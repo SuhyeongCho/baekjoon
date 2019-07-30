@@ -1,54 +1,50 @@
-#include<iostream>
+#include <iostream>
+#include <queue>
+#include <vector>
 using namespace std;
 
-int arr[100001];
-int front = 0;
-int back = 1;
-
-void push(int x){ arr[back++] = x; }
-int pop(){ return  front+1!=back?arr[++front]:-1; }
-int Size(){ return back-front-1; }
-bool isEmpty(){ return Size()?0:1; }
-int Front(){return Size()?arr[front+1]:-1;}
-int Back(){return Size()?arr[back-1]:-1;}
-void clear(){ front = 0; back = 1;}
-
-int isMax(){
-    for(int i=front+2;i<back;i++){
-        if(arr[i]>Front()) return 0;
+int findMaxValue(queue< pair<int,int> > q, int N) {
+    int result = 0;
+    for (int i = 0 ; i < N ; i++) {
+        pair<int,int> p = q.front();
+        q.pop();
+        if (p.second > result) result = p.second;
+        q.push(p);
     }
-    return 1;
+    return result;
 }
-int main(){
-    int T; cin>>T;
-    for(int t=0;t<T;t++){
-        clear();
-        int count = 0;
-        int N,M; cin>>N>>M;
-        int arr2[N];
-        for(int i=0;i<N;i++){
-            cin>>arr2[i];
-            push(arr2[i]);
+
+
+
+int main() {
+    
+    int T; cin >> T;
+    for (int t = 0 ; t < T ; t++) {
+        int N, M; cin >> N >> M;
+        
+        queue< pair<int,int> > q;
+        vector<int> v(N);
+        
+        for (int i = 0 ; i < N ; i++) {
+            int d; cin >> d;
+            q.push(make_pair(i,d));
         }
-        while(1){
-            if(isMax()){
-                pop();
+        int count = 1;
+        while(count <= N) {
+            if (findMaxValue(q, N) == q.front().second) {
+                v[q.front().first] = count;
+                q.pop();
                 count++;
-                if(M==0){
-                    cout<<count<<endl;
-                    break;
-                }
-                else{
-                    M--;
-                    N--;
-                }
-            }
-            else{
-                push(pop());
-                if(M==0) M = N-1;
-                else M--;
+            } else {
+                pair<int,int> p = q.front();
+                q.pop();
+                q.push(p);
             }
         }
+        
+        cout << v[M] << endl;
     }
+    
+    
+    return 0;
 }
-

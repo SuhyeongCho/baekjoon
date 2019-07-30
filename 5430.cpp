@@ -1,68 +1,74 @@
 #include<iostream>
 #include<list>
-#include<string>
+#include<cstring>
 
 using namespace std;
 
-list<int> l;
-list<string> st;
-char arr[2000000];
-
-void arrToDeque(){
-    string s="";
-    st.clear();
-    for(int i=0;arr[i]!='\0';i++){
-        char c = arr[i];
-        if(c == '[' || c == ']') continue;
-        else if(c== ','){
-            st.push_back(s);
-            s="";
+list<int> stringToList(char* s) {
+    list<int> l;
+    int len = strlen(s);
+    int num = 0;
+    for (int i = 0 ; i < len ; i++) {
+        if (i == 0 && s[i] == '[' && s[i+1] == ']') break;
+        if (s[i] == '[') continue;
+        if (s[i] == ',' || s[i] == ']') {
+            l.push_back(num);
+            num = 0;
         }
-        else s+= c;
+        else {
+            num *= 10;
+            num += s[i] - '0';
+        }
     }
-    if(s != "") st.push_back(s);
-    while(!st.empty()){
-        s = st.front();
-        st.pop_front();
-        int index = atoi(s.c_str());
-        l.push_back(index);
-    }
-}
-string dequeToArr(){
-    string s = "";
-    s += "[";
-    while(!l.empty()){
-        int num = l.front();
-        l.pop_front();
-        s += to_string(num);
-        if(l.empty()) break;
-        else s += ",";
-    }
-    s += "]";
-    return s;
+    return l;
 }
 
-int main(){
-    int T; cin>>T;
-    for(int t=0;t<T;t++){
-        char str[1000001]; cin>>str;
-        int n; cin>>n;
-        cin>>arr;
-        l.clear();
-        arrToDeque();
-        int d_cnt = 0;
-        for(int i=0;str[i]!='\n';i++){
-            if(str[i] == 'D') d_cnt++;
+
+int main() {
+    int T; cin >> T;
+    for (int t = 0 ; t < T ; t++) {
+        char p[400001]; scanf("%s",p);
+        int N; cin >> N;
+        char s[400001]; scanf("%s",s);
+        
+        list<int> l = stringToList(s);
+        
+        int len = strlen(p);
+        
+        int head = 0;
+        int tail = 0;
+        int reverseCount = 0;
+        for (int i = 0 ; i < len ; i++) {
+            if (p[i] == 'R') reverseCount++;
+            else {
+                if (reverseCount % 2) tail++;
+                else head++;
+            }
         }
-        if(d_cnt > l.size()){
-            cout<<"error"<<endl;
-            continue;
+        
+        if (head + tail > l.size()) {
+            printf("error\n");
+        } else {
+            
+            for (int i = 0 ; i < head ; i++) l.pop_front();
+            for (int i = 0 ; i < tail ; i++) l.pop_back();
+
+            if (reverseCount % 2) l.reverse();
+            
+            if (l.size() == 0) cout << "[]" << endl;
+            else {
+                cout << "[";
+                int index = 0;
+                for (list<int>::iterator iter = l.begin() ; iter != l.end() ; iter++) {
+                    cout << *iter;
+                    index++;
+                    if (index == l.size()) cout << "]" << endl;
+                    else printf(",");
+                }
+            }
         }
-        for(int i=0;str[i]!='\n';i++){
-            if(str[i] == 'R') l.reverse();
-            else if(str[i] == 'D') l.pop_front();
-        }
-        cout<<dequeToArr()<<endl;
     }
+
+    return 0;
 }
 
