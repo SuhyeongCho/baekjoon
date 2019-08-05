@@ -1,66 +1,73 @@
-#include<iostream>
+#include <iostream>
 
 using namespace std;
 
-int N;
-int map[2187][2187];
-int Minus,Zero,Plus;
+int arr[2187][2187];
 
-bool findMinus(int start1,int end1,int start2,int end2){
-    for(int i=start1;i<end1;i++){
-        for(int j=start2;j<end2;j++){
-            if(map[i][j] != -1) return false;
+int minusOneCount = 0;
+int zeroCount = 0;
+int oneCount = 0;
+
+bool findOneQuadTree(int n, int startY, int startX) {
+    for (int i = startY ; i < startY + n ; i++) {
+        for (int j = startX ; j < startX + n ; j++) {
+            if (arr[i][j] == 0 || arr[i][j] == -1) return 0;
         }
     }
-    return true;
+    return 1;
 }
-bool findPlus(int start1,int end1,int start2,int end2){
-    for(int i=start1;i<end1;i++){
-        for(int j=start2;j<end2;j++){
-            if(map[i][j] != 1) return false;
+bool findMinusOneQuadTree(int n, int startY, int startX) {
+    for (int i = startY ; i < startY + n ; i++) {
+        for (int j = startX ; j < startX + n ; j++) {
+            if (arr[i][j] == 0 || arr[i][j] == 1) return 0;
         }
     }
-
-    return true;
+    return 1;
 }
-bool findZero(int start1,int end1,int start2,int end2){
-    for(int i=start1;i<end1;i++){
-        for(int j=start2;j<end2;j++){
-            if(map[i][j] != 0) return false;
+
+bool findZeroQuadTree(int n, int startY, int startX) {
+    for (int i = startY ; i < startY + n ; i++) {
+        for (int j = startX ; j < startX + n ; j++) {
+            if (arr[i][j] == 1 || arr[i][j] == -1) return 0;
         }
     }
-
-    return true;
+    return 1;
 }
 
+void solve(int n, int startY, int startX) {
+    if (n == 0) return;
+    
+    if (findOneQuadTree(n, startY, startX)) oneCount++;
+    else if (findZeroQuadTree(n, startY, startX)) zeroCount++;
+    else if (findMinusOneQuadTree(n, startY, startX)) minusOneCount++;
 
-void find(int a1,int b1,int a2,int b2){
-    if(a1 >=b1|| a2>=b2) return;
-    if(findMinus(a1,b1,a2,b2)) Minus++;
-    else if(findZero(a1,b1,a2,b2)) Zero++;
-    else if(findPlus(a1,b1,a2,b2)) Plus++;
-    else{
-        int c1 = (b1 - a1)/3;
-        int c2 = (b2 - a2)/3;
-        for(int i=0;i<3;i++){
-            for(int j=0;j<3;j++){
-                find(c1*i+a1,c1*(i+1)+a1,c2*j+a2,c2*(j+1)+a2);
-            }
-        }
+    else {
+        int m1 = n / 3;
+        int m2 = n / 3 * 2;
+        solve(m1, startY, startX);
+        solve(m1, startY, startX + m1);
+        solve(m1, startY, startX + m2);
+        solve(m1, startY + m1, startX);
+        solve(m1, startY + m1, startX + m1);
+        solve(m1, startY + m1, startX + m2);
+        solve(m1, startY + m2, startX);
+        solve(m1, startY + m2, startX + m1);
+        solve(m1, startY + m2, startX + m2);
     }
     return;
 }
 
-int main(){
-    cin>>N;
-    for(int i=0;i<N;i++){
-        for(int j=0;j<N;j++){
-            scanf("%d",&map[i][j]);
+int main() {
+    int N; cin >> N;
+
+    for (int i = 0 ; i < N ; i++) {
+        for (int j = 0 ; j < N ; j++) {
+            scanf("%d", &arr[i][j]);
         }
     }
-    find(0,N,0,N);
-    cout<<Minus<<endl;
-    cout<<Zero<<endl;
-    cout<<Plus<<endl;
+    solve(N, 0, 0);
+    cout << minusOneCount << endl;
+    cout << zeroCount << endl;
+    cout << oneCount << endl;
     return 0;
 }

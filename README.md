@@ -50,7 +50,16 @@
 - [도움받은 사이트][8]
 
 ### 힙정렬
-- [가운데로 정렬][11]
+- 가운데로 정렬
+- [도움받은사이트][11]
+
+## 분할정복
+### 히스토그램에서 가장 큰 직사각형
+- [도움받은사이트][12]
+- 알고리즘 문제해결전략 p.199
+### 곱셈
+- [도움받은사이트][13]
+### 이항계수 3
 
 
 [1]: https://www.acmicpc.net
@@ -64,3 +73,5 @@
 [9]: https://www.acmicpc.net/board/view/25456
 [10]: https://www.acmicpc.net/blog/view/70
 [11]: https://www.crocus.co.kr/625
+[12]: https://favorite-s.tistory.com/entry/6549
+[13]: https://m.blog.naver.com/PostView.nhn?blogId=kks227&logNo=220583413569&proxyReferer=https%3A%2F%2Fwww.google.com%2F
