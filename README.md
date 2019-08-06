@@ -60,7 +60,7 @@
 ### 곱셈
 - [도움받은사이트][13]
 ### 이항계수 3
-
+- [도움받은사이트][14]
 
 [1]: https://www.acmicpc.net
 [2]: https://twpower.github.io/71-use-sort-and-stable_sort-in-cpp
@@ -75,3 +75,4 @@
 [11]: https://www.crocus.co.kr/625
 [12]: https://favorite-s.tistory.com/entry/6549
 [13]: https://m.blog.naver.com/PostView.nhn?blogId=kks227&logNo=220583413569&proxyReferer=https%3A%2F%2Fwww.google.com%2F
+[14]: https://onsil-thegreenhouse.github.io/programming/problem/2018/04/02/problem_combination/
