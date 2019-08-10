@@ -1,60 +1,60 @@
-#include<iostream>
-#include<cstring>
+#include <iostream>
+#include <vector>
+#include <queue>
+
 using namespace std;
 
-bool visit[1001];
-bool map[1001][1001];
-int arr[100001];
-int front = 0;
-int back = 1;
+int N, M, V;
+bool isVisited[1001];
+vector< vector <int> > v(1001,vector<int>(1001,0));
 
-void push(int x){ arr[back++] = x; }
-int pop(){ return  front+1!=back?arr[++front]:-1; }
-int Size(){ return back-front-1; }
-bool isEmpty(){ return Size()?0:1; }
-int Front(){return Size()?arr[front+1]:-1;}
-int Back(){return Size()?arr[back-1]:-1;}
-
-int n,m;
-void DFS(int here){
-    visit[here] = true;
-    cout<<here<<" ";
-    for(int i=1;i<=n;i++){
-        int there = map[here][i];
-        if(there && !visit[i]) DFS(i);
+void dfs(int pos) {
+    if (isVisited[pos]) return;
+    printf("%d ", pos);
+    isVisited[pos] = true;
+    for (int i = 1 ; i <= N; i++) {
+        if (v[pos][i]) dfs(i);
     }
 }
 
-void BFS(int here){
-    visit[here] = true;
-    push(here);
-    while(!isEmpty()){
-        int q = pop();
-        cout<<q<<" ";
-        for(int i=1;i<=n;i++){
-            int there = map[q][i];
-            if(there && !visit[i]){
-                push(i);
-                visit[i] = true;
+void bfs(int pos) {
+    queue<int> q;
+    q.push(pos);
+    while(!q.empty()) {
+        int d = q.front();
+        q.pop();
+        if (!isVisited[d]) {
+            printf("%d ", d);
+            isVisited[d] = true;
+            for (int i = 1 ; i <= N ; i++) {
+                if (v[d][i]) q.push(i);
             }
         }
     }
 }
+
 int main(){
-    int v;
-    cin>>n>>m>>v;
-    for(int i=0;i<n+1;i++)for(int j=0;j<n+1;j++)map[i][j]=false;
-    for(int i=0;i<n+1;i++)visit[i]=false;
-    for(int i=0;i<m;i++){
-        int a,b; cin>>a>>b;
-        map[a][b] = true;
-        map[b][a] = true;
+    cin >> N >> M >> V;
+
+    for (int i = 0 ; i < M ; i++) {
+        int a, b;
+        scanf("%d %d", &a, &b);
+        v[a][b] = 1;
+        v[b][a] = 1;
     }
-    DFS(v);
-    cout<<endl;
-    for(int i=0;i<n+1;i++)visit[i]=false;
-    BFS(v);
-    cout<<endl;
-    
+
+    for (int i = 1 ; i <= 1000 ; i++) {
+        isVisited[i] = false;
+    }
+    dfs(V);
+    cout << endl;
+
+    for (int i = 1 ; i <= 1000 ; i++) {
+        isVisited[i] = false;
+    }
+    bfs(V);
+    cout << endl;
+
+    return 0;
 }
 
