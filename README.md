@@ -40,6 +40,10 @@
 ### N,K로 이차원 배열 접근
 - 동전1
 
+### knap-sack
+- 평범한 배낭
+- [도움받은사이트][17]
+
 ## 수학
 
 ### 최대공약수
@@ -69,6 +73,16 @@
 
 ## 이분탐색
 
+### 파라메트릭 서치
+- 공유기 설치
+- [도움받은사이트][15]
+- K번째 수
+- [도움받은사이트][16]
+
+### lower_bound
+- 가장 긴 증가하는 부분 수열 2 (LIS)
+- [도움받은사이트][3]
+
 ## DFS & BFS
 
 
@@ -86,3 +100,6 @@
 [12]: https://favorite-s.tistory.com/entry/6549
 [13]: https://m.blog.naver.com/PostView.nhn?blogId=kks227&logNo=220583413569&proxyReferer=https%3A%2F%2Fwww.google.com%2F
 [14]: https://onsil-thegreenhouse.github.io/programming/problem/2018/04/02/problem_combination/
+[15]: https://meylady.tistory.com/13
+[16]: https://stack07142.tistory.com/298
+[17]: https://huiyu.tistory.com/entry/DP-01-Knapsack배낭-문제
