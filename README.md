@@ -81,6 +81,7 @@
 
 ### [다익스트라 알고리즘][19]
 ### [벨만포드 알고리즘][20]
+- [타임머신][21]
 
 [1]: https://www.acmicpc.net
 [2]: https://twpower.github.io/71-use-sort-and-stable_sort-in-cpp
@@ -102,3 +103,4 @@
 [18]: https://js1jj2sk3.tistory.com/59
 [19]: https://jason9319.tistory.com/307
 [20]: https://www.crocus.co.kr/534
+[21]: https://deliorange.tistory.com/88
