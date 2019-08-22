@@ -65,7 +65,7 @@
 - [공유기 설치][15]
 - [K번째 수][16]
 
-### lower_bound
+### [lower_bound][23]
 - [가장 긴 증가하는 부분 수열 2][3] (LIS)
 
 ## 완전탐색
@@ -80,8 +80,15 @@
 - N과 M (4)
 
 ### [다익스트라 알고리즘][19]
+- 최단경로
 ### [벨만포드 알고리즘][20]
 - [타임머신][21]
+
+## 문자열
+
+### [KMP 알고리즘][22]
+- 찾기
+
 
 [1]: https://www.acmicpc.net
 [2]: https://twpower.github.io/71-use-sort-and-stable_sort-in-cpp
@@ -104,3 +111,5 @@
 [19]: https://jason9319.tistory.com/307
 [20]: https://www.crocus.co.kr/534
 [21]: https://deliorange.tistory.com/88
+[22]: https://bowbowbow.tistory.com/6
+[23]: https://www.crocus.co.kr/913

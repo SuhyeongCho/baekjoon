@@ -1,48 +1,60 @@
 #include <iostream>
 #include <algorithm>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 int dp[1001][1001];
-int sol[1001][1001];
+
 int main(){
-    string s1,s2;
-    cin>>s1>>s2;
-    s1 = '1'+s1;
-    s2 = '2'+s2;
-    for(int i=1;i<s1.length();i++){
-        for(int j=1;j<s2.length();j++){
-            if(s1[i] == s2[j]){
-                dp[i][j] = dp[i-1][j-1] + 1;
-                sol[i][j] = 1;
+    
+    string s1, s2;
+    cin >> s1 >> s2;
+
+    s1 = "0" + s1;
+    s2 = "1" + s2;
+
+    int len1 = s1.size();
+    int len2 = s2.size();
+
+    for (int i = 0 ; i < len1 ; i++) {
+        for (int j = 0 ; j < len2 ; j++) {
+            if (i == 0 || j == 0) {
+                dp[i][j] = 0;
+                continue;
             }
-            else{
-                dp[i][j] = max(dp[i-1][j],dp[i][j-1]);
-                if(dp[i][j] == dp[i-1][j]) sol[i][j] = 2;
-                else sol[i][j] = 3;
+
+            if (s1[i] == s2[j]) {
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            } else {
+                dp[i][j] = max(dp[i][j - 1], dp[i - 1][j]);
             }
         }
     }
 
-    int a = s1.length();
-    int b = s2.length();
-    string s = "";
-    a--;b--;
-    while(sol[a][b]){
-        if(sol[a][b] == 1){
-            s = s1[a] + s;
-            a--;
-            b--;
-        }
-        else if(sol[a][b] == 2){
-            a--;
-        }
-        else if(sol[a][b] ==3){
-            b--;
+    vector<int> v;
+    int i = len1 - 1;
+    int j = len2 - 1;
+    while(dp[i][j] != 0) {
+        if (dp[i][j] == dp[i - 1][j]) {
+            i--;
+        } else if (dp[i][j] == dp[i][j - 1]) {
+            j--;
+        } else{
+            v.push_back(s1[i]);
+            i--;
+            j--;
         }
     }
-    cout<<dp[s1.length()-1][s2.length()-1]<<endl;
-    cout<<s<<endl;
+
+    int siz = v.size();
+    cout << siz << endl;
+    for (int i = 0 ; i < siz ; i++) {
+        printf("%c",v.back());
+        v.pop_back();
+    }
+    cout << endl;
+
     return 0;
 }

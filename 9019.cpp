@@ -1,77 +1,80 @@
 #include <iostream>
 #include <queue>
 #include <string>
+#include <vector>
+
 using namespace std;
 
-queue<int> q1;
-queue<string> q2;
-bool isVisited[10000];
-
-int a,b;
-int makeDigit(int d1,int d2,int d3,int d4){
-    return d1*1000 + d2*100 + d3*10 + d4;
-}
-int d1,d2,d3,d4;
-//D : 2*n % 10000
-//S : n-1 % 10000
-//L : [d1,d2,d3,d4] -> [d2,d3,d4,d1]
-//R : [d1,d2,d3,d4] -> [d4,d1,d2,d3]
 
 
-void bfs(){
-    q1.push(a);
-    q2.push("");
-    isVisited[a] = true;
-    while(!q1.empty()){
-        int m = q1.front(); q1.pop();
-        string s = q2.front(); q2.pop();
-        if(m == b){
-            cout<<s<<'\n';
-            return;
+int main() {
+    int T; cin >> T;
+    for (int ttt = 0 ; ttt < T ; ttt++) {
+
+        int A, B;
+        cin >> A >> B;
+
+        queue<int> q;
+        q.push(A);
+
+        vector<pair<char,int> > v(10000);
+
+        int level = 0;
+
+        bool flag = false;
+
+        while(!q.empty()) {
+            int siz = q.size();
+            for (int i = 0 ; i < siz ; i++) {
+                int d = q.front();
+                q.pop();
+
+                if (d == B) {
+                    vector<int> result;
+                    result.push_back(v[d].first);
+                    while(v[d].second != A) {
+                        d = v[d].second;
+                        result.push_back(v[d].first);
+                    }
+
+                    int siz = result.size();
+                    for (int i = 0 ; i < siz ; i++) {
+                        printf("%c",result.back());
+                        result.pop_back();
+                    }
+                    cout << endl;
+                    
+                    flag = true;
+                    break;
+                }
+                if (v[(d * 2) % 10000].first == 0) {
+                    q.push((d * 2) % 10000);
+                    v[(d * 2) % 10000].first = 'D';
+                    v[(d * 2) % 10000].second = d;
+                }
+
+                if (v[(d + 9999) % 10000].first == 0) {
+                    q.push((d + 9999) % 10000);
+                    v[(d + 9999) % 10000].first = 'S';
+                    v[(d + 9999) % 10000].second = d;
+                }
+
+                if (v[(d % 1000) * 10 + (d / 1000)].first == 0) {
+                    q.push((d % 1000) * 10 + (d / 1000));
+                    v[(d % 1000) * 10 + (d / 1000)].first = 'L';
+                    v[(d % 1000) * 10 + (d / 1000)].second = d;
+                }
+
+                if (v[(d / 10) + (d % 10) * 1000].first == 0) {
+                    q.push((d / 10) + (d % 10) * 1000);
+                    v[(d / 10) + (d % 10) * 1000].first = 'R';
+                    v[(d / 10) + (d % 10) * 1000].second = d;
+                }
+
+            }
+            level++;
+            if (flag) break;
         }
-        int D = (2*m) % 10000;
-        int S = m?m-1:9999;
-        
-        d1 = m /1000; m%=1000;
-        d2 = m /100; m%=100;
-        d3 = m/10; m%=10;
-        d4 = m;
-        
-        
-        int L = makeDigit(d2,d3,d4,d1);
-        int R = makeDigit(d4,d1,d2,d3);
-        
-        if(!isVisited[D]){
-            isVisited[D] = true;
-            q1.push(D);
-            q2.push(s+"D");
-        }
-        if(!isVisited[S]){
-            isVisited[S] = true;
-            q1.push(S);
-            q2.push(s+"S");
-        }
-        
-        if(!isVisited[L]){
-            isVisited[L] = true;
-            q1.push(L);
-            q2.push(s+"L");
-        }
-        if(!isVisited[R]){
-            isVisited[R] = true;
-            q1.push(R);
-            q2.push(s+"R");
-        }
-    }
-}
-int main(){
-    int T; cin>>T;
-    for(int t=0;t<T;t++){
-        while(!q1.empty())q1.pop();
-        while(!q2.empty())q2.pop();
-        for(int i=0;i<10000;i++) isVisited[i] = false;
-        cin>>a>>b;
-        bfs();
     }
     return 0;
 }

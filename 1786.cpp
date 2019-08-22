@@ -1,52 +1,69 @@
 #include <iostream>
-#include <string>
 #include <vector>
-#include <cstring>
+#include <string>
 
 using namespace std;
 
+vector<int> result;
+vector<int> pi;
+
+
+void getPi(string p) {
+    int len = p.length();
+    int j = 0;
+
+    for (int i = 1; i < len ; i++) {
+        while(j > 0 && p[i] != p[j]) {
+            j = pi[j - 1];
+        }
+        if (p[i] == p[j]) {
+            j++;
+            pi[i] = j;
+        }
+    }
+
+}
+
+void kmp(string s, string p) {
+    int len1 = s.length();
+    int len2 = p.length();
+    int j = 0;
+
+    for (int i = 0 ; i < len1 ; i++) {
+        while (j > 0 && s[i] != p[j]) {
+            j = pi[j - 1];
+        }
+        if (s[i] == p[j]) {
+            if (j == len2 - 1) {
+                result.push_back(i - len2 + 1);
+                j = pi[j];
+            } else {
+                j++;
+            }
+        }
+    }
+
+}
+
 
 int main() {
-    char t1[1000002],t2[1000002];
-    fgets(t1,1000002,stdin);
-    fgets(t2,1000002,stdin);
-    
-    fflush(stdin);
-    
-    t1[strlen(t1)-1] = '\0';
-    t2[strlen(t2)-1] = '\0';
+    string s, p;
 
-    string T, P;
-    vector<int> v;
+    getline(cin, s);
+    getline(cin, p);
 
-    
-    T = t1;
-    P = t2;
-    
-    int count = 0;
-    size_t found = 0;
-    
-    bool check = true;
-    
-    while(check) {
-        found = T.find(P, found);ㅌ
-        if (found != string::npos) {
-            count++;
-            v.push_back(found+1);
-        } else {
-            check = false;
-        }
-        found++;
-    }
-    
-    int siz = v.size();
+    pi.resize(p.length());
+
+    getPi(p);
+    kmp(s, p);
+
+    int siz = result.size();
+
     cout << siz << endl;
-    if (siz) {
-        for (int i = 0 ; i < siz ; i++) {
-            cout << v[i] << ' ';
-        }
-        cout << '\n';
+
+    for (int i = 0 ; i < siz ; i++) {
+        printf("%d\n", result[i] + 1);
     }
-    
+
     return 0;
 }
