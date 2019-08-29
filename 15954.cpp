@@ -25,8 +25,8 @@ int main() {
     for (int i = K ; i <= N ; i++) {
         for (int s = 1 ; s <= N - i + 1 ; s++) {
             int e = s + i - 1;
-            long double mean = (double)(psum[e] - psum[s - 1]) / i;
-            long double dmean = (double)(dpsum[e] - dpsum[s - 1]) / i;
+            long double mean = (long double)(psum[e] - psum[s - 1]) / i;
+            long double dmean = (long double)(dpsum[e] - dpsum[s - 1]) / i;
 
             long double var = dmean - (mean * mean);
 

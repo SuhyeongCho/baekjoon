@@ -1,15 +1,21 @@
-#include<iostream>
-#include<cmath>
+#include <iostream>
+#include <cmath>
 
 using namespace std;
 
-int main(){
-    long long int n; cin>>n;
-    long long int i = 1;
-    for(;i<n;i++){
-        long long int X = n - ((pow(2,i) - 1) * (i + 1) + i);
-        if(X <= (pow(2,i)*(i + 1)))
-            break;
+int main() {
+    long long int N;
+    scanf("%lld", &N);
+
+    long long count = 1;
+
+    while(count <= 100) {
+        long long int result = N - pow(2, count + 1) * (count + 1);
+        if (result < 0) break;
+        count++;
     }
-    cout<<i<<endl;
+
+    printf("%lld\n", count);
+
+    return 0;
 }

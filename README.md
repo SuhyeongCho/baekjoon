@@ -38,6 +38,9 @@
 ### knap-sack
 - [평범한 배낭][17]
 
+### 4개 고르기 (N^2 만에 풀기)
+- [Parcel][24]
+
 ## 수학
 
 ### 최대공약수
@@ -47,6 +50,9 @@
 
 ### Stack
 - [오큰수][8]
+
+### [Monotone Stack][25]
+- [Passport Control][26]
 
 ### Heap
 - [가운데로 정렬][11]
@@ -113,3 +119,6 @@
 [21]: https://deliorange.tistory.com/88
 [22]: https://bowbowbow.tistory.com/6
 [23]: https://www.crocus.co.kr/913
+[24]: https://dochi3.tistory.com/12
+[25]: https://justicehui.github.io/medium-algorithm/2019/01/01/monotoneStack/
+[26]: https://justicehui.github.io/icpc/2019/01/12/BOJ16288/
