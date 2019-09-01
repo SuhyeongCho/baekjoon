@@ -56,6 +56,7 @@
 
 ### Heap
 - [가운데로 정렬][11]
+- [철로][27]
 
 ## Recursive
 
@@ -122,3 +123,4 @@
 [24]: https://dochi3.tistory.com/12
 [25]: https://justicehui.github.io/medium-algorithm/2019/01/01/monotoneStack/
 [26]: https://justicehui.github.io/icpc/2019/01/12/BOJ16288/
+[27]: http://blog.naver.com/PostView.nhn?blogId=occidere&logNo=221085858307&parentCategoryNo=&categoryNo=23&viewDate=&isShowPopularPosts=false&from=postView
