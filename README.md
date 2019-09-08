@@ -1,5 +1,6 @@
-# 백준 알고리즘
-[백준 알고리즘][1]을 풀면서 기억하면 좋을 것 같은 기법 및 도움 받은 사이트 정리
+# 알고리즘 정리
+
+**[백준 알고리즘][1]** 과 **[프로그래머스 코딩테스트 연습][28]** 을 풀면서 기억하면 좋을 것 같은 기법 및 도움 받은 사이트 정리
 
 **[자주 틀리는 요인][10]**
 
@@ -124,3 +125,4 @@
 [25]: https://justicehui.github.io/medium-algorithm/2019/01/01/monotoneStack/
 [26]: https://justicehui.github.io/icpc/2019/01/12/BOJ16288/
 [27]: http://blog.naver.com/PostView.nhn?blogId=occidere&logNo=221085858307&parentCategoryNo=&categoryNo=23&viewDate=&isShowPopularPosts=false&from=postView
+[28]: https://programmers.co.kr
